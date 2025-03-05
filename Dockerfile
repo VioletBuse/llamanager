@@ -31,6 +31,8 @@ RUN apt-get update -qq && \
 COPY package-lock.json package.json ./
 RUN npm ci
 
+RUN npm run build
+
 # Copy application code
 COPY . .
 

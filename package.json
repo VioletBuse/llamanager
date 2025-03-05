@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
+    "build": "tsc",
     "start": "node --experimental-transform-types src/index.ts"
   },
   "author": "",
