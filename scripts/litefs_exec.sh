@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 if [-f "/litefs/.primary"]; then
     litestream replicate -exec litestream_exec.sh

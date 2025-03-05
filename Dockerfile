@@ -9,9 +9,6 @@ LABEL fly_launch_runtime="Node.js"
 # Node.js app lives here
 WORKDIR /app
 
-# Set production environment
-ENV NODE_ENV="production"
-
 # Install Litestream
 ADD https://github.com/benbjohnson/litestream/releases/download/v0.3.13/litestream-v0.3.13-linux-amd64.tar.gz /tmp/litestream.tar.gz
 RUN tar -C /usr/local/bin -xzf /tmp/litestream.tar.gz
@@ -31,13 +28,16 @@ RUN apt-get update -qq && \
 COPY package-lock.json package.json ./
 RUN npm ci
 
-RUN npm run build
-
 # Copy application code
 COPY . .
 
+RUN npm run build
+
 # Final stage for app image
 FROM base
+
+# Set production environment
+ENV NODE_ENV="production"
 
 # Copy built application
 COPY --from=build /app /app

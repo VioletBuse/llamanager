@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 if ["$FLY_PROCESS_GROUP" = "worker"]; then
     litestream_exec.sh
