@@ -1,4 +1,4 @@
-import  app  from "./routes"
+import  app  from "./routes/index.js"
 
 export const run_api = async () => {
     app.listen(process.env.PORT!, () => {

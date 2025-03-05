@@ -1,8 +1,8 @@
 import "dotenv/config"
 
-import { run_worker } from "./worker"
-import { run_api } from "./api"
-import { run_manager } from "./manager"
+import { run_worker } from "./worker/index.js"
+import { run_api } from "./api/index.js"
+import { run_manager } from "./manager/index.js"
 
 if (process.env.FLY_PROCESS_GROUP === "worker") {
     run_worker()

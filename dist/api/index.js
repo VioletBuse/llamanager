@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,15 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.run_api = void 0;
-const routes_1 = __importDefault(require("./routes"));
-const run_api = () => __awaiter(void 0, void 0, void 0, function* () {
-    routes_1.default.listen(process.env.PORT, () => {
+import app from "./routes/index.js";
+export const run_api = () => __awaiter(void 0, void 0, void 0, function* () {
+    app.listen(process.env.PORT, () => {
         console.log(`llamanager api running on port ${process.env.PORT}`);
     });
 });
-exports.run_api = run_api;
