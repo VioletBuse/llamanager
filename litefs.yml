@@ -1,0 +1,24 @@
+fuse:
+  dir: "/litefs"
+  allow-other: false
+  debug: false
+
+data:
+  dir: "${DATA_DIR}/litefs"
+  compress: true
+  retention: 60m
+
+lease:
+  type: "consul"
+  candidate: ${FLY_PROCESS_GROUP == "manager"}
+  promote: true
+  advertise-url: "https://${FLY_ALLOC_ID}.vm.${FLY_APP_NAME}.internal:20202"
+  consul:
+    url: "${FLY_CONSUL_URL}"
+    key: "${FLY_APP_NAME}/primary"
+
+exec: 
+  - cmd: "migrate.sh"
+    if-candidate: true
+
+  - cmd: "litefs_exec.sh"

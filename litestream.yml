@@ -1,0 +1,9 @@
+dbs:
+  - path: /litefs/data.db
+    meta-path: ${DATA_DIR}/litestream
+    replicas:
+      - type: s3
+        bucket: "llamanager"
+        path: "llamanager.db"
+        endpoint: "fly.storage.tigris.dev"
+        force-path-style: true
