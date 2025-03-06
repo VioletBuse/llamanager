@@ -1,2 +1,5 @@
 
-export const run_worker = async () => {}
+export const run_worker = async () => {
+    console.log("hello from worker")
+    process.exit(0)
+}

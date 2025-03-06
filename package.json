@@ -2,11 +2,9 @@
   "name": "llamanager",
   "version": "0.0.1",
   "description": "A program to deploy to fly.io to cheaply manage llms",
-  "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",

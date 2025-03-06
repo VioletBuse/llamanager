@@ -6,6 +6,10 @@ FROM node:${NODE_VERSION}-slim AS base
 
 LABEL fly_launch_runtime="Node.js"
 
+RUN apt update -q && apt install -y ca-certificates wget && \
+    wget -qO /cuda-keyring.deb https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
+    dpkg -i /cuda-keyring.deb && apt update -q
+
 # Node.js app lives here
 WORKDIR /app
 
@@ -46,4 +50,4 @@ RUN chmod +x scripts/*
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 8080
-CMD ["scripts/start.sh"]
+CMD ["node" "dist/index.js"]

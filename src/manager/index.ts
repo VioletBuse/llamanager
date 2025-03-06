@@ -5,11 +5,14 @@ import {migrate} from "drizzle-orm/better-sqlite3/migrator"
 
 export const run_manager = async () => {
 
+    const migrations_dir = path.resolve(process.cwd(), "./drizzle")
+    console.log(`migrations folder: ${migrations_dir}`)
+
     await migrate(db, {
-        migrationsFolder: path.resolve(process.cwd(), "./drizzle")
+        migrationsFolder: migrations_dir
     });
 
-    app.listen(process.env.PORT!, () => {
-        console.log(`llamanager manager listening on port ${process.env.PORT!}`)
+    app.listen(process.env.INTERNAL_PORT!, () => {
+        console.log(`llamanager manager listening on port ${process.env.INTERNAL_PORT!}`)
     })
 }

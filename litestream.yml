@@ -1,5 +1,5 @@
 dbs:
-  - path: /litefs/data.db
+  - path: /litefs/database.db
     meta-path: ${DATA_DIR}/litestream
     replicas:
       - type: s3
