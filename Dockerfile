@@ -14,8 +14,8 @@ RUN apt update -q && apt install -y ca-certificates wget && \
 WORKDIR /app
 
 # Install Litestream
-ADD https://github.com/benbjohnson/litestream/releases/download/v0.3.13/litestream-v0.3.13-linux-amd64.tar.gz /tmp/litestream.tar.gz
-RUN tar -C /usr/local/bin -xzf /tmp/litestream.tar.gz
+# ADD https://github.com/benbjohnson/litestream/releases/download/v0.3.13/litestream-v0.3.13-linux-amd64.tar.gz /tmp/litestream.tar.gz
+# RUN tar -C /usr/local/bin -xzf /tmp/litestream.tar.gz
 
 # Install LiteFS
 RUN apt-get update -y && apt-get install -y ca-certificates fuse3 sqlite3
@@ -46,8 +46,8 @@ ENV NODE_ENV="production"
 # Copy built application
 COPY --from=build /app /app
 
-RUN chmod +x scripts/*
+# RUN chmod +x scripts/*
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 8080
-CMD ["node" "dist/index.js"]
+CMD ["litefs", "mount", "-config", "/app/litefs.yml"]

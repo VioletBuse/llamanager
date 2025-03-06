@@ -18,7 +18,4 @@ lease:
     key: "${FLY_APP_NAME}/primary"
 
 exec: 
-  - cmd: "migrate.sh"
-    if-candidate: true
-
-  - cmd: "litefs_exec.sh"
+  - cmd: "node /app/dist/index.js"
