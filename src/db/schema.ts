@@ -1,5 +1,5 @@
-import { int, sqliteTable } from "drizzle-orm/sqlite-core";
+import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-export const queries = sqliteTable("queries", {
-    id: int('id').primaryKey()
+export const api_keys = sqliteTable('api_keys', {
+    id: text('id').primaryKey()
 })
