@@ -4,7 +4,7 @@ import shell from "shelljs"
 import { nanoid } from "nanoid";
 import { s3 } from "../../db/s3.js";
 import { PutObjectCommand, S3 } from "@aws-sdk/client-s3";
-import { createReadStream } from "fs-extra";
+import fs from "fs-extra";
 import { rm } from "node:fs/promises";
 
 export const run_backup_manager = () => {
@@ -29,7 +29,8 @@ const manage_backups = async () => {
 
     shell.cd('/litefs')
     const database_name = path.basename(process.env.DB_FILE!)
-    const backup_local_path = `/volume/backup_staging/backup-${nanoid}.db`
+    const backup_local_path = `/volume/backup_staging/backup-${nanoid()}.db`
+    console.log(`backup db ${database_name} to ${backup_local_path}`)
     const backup = shell.exec(`litefs export -name ${database_name} ${backup_local_path}`, async (code, stdout, stderr) => {
         if (code !== 0) {
             shell.rm('-f', backup_local_path)
@@ -48,7 +49,7 @@ const manage_backups = async () => {
         const five_min_increment = mins - (mins % 5);
         s3_backup_name += five_min_increment.toPrecision(2)
 
-        const stream = createReadStream(backup_local_path);
+        const stream = fs.createReadStream(backup_local_path);
 
         const upload_command = new PutObjectCommand({
             Key: `Database_Backups/${s3_backup_name}.db`,
