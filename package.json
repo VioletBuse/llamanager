@@ -26,15 +26,18 @@
     "@kitajs/ts-html-plugin": "^4.1.1",
     "better-sqlite3": "^11.8.1",
     "body-parser": "^1.20.3",
+    "commander": "^13.1.0",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.40.0",
     "express": "^4.21.2",
+    "figlet": "^1.8.0",
     "fly-admin": "^1.6.1",
     "fs-extra": "^11.3.0",
     "nanoid": "^5.1.3",
     "node-llama-cpp": "^3.6.0",
     "shelljs": "^0.8.5",
-    "zod": "^3.24.2"
+    "zod": "^3.24.2",
+    "zod-to-json-schema": "^3.24.3"
   },
   "dockerfile": {
     "litestream": true
