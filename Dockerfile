@@ -44,7 +44,7 @@ FROM base
 ENV NODE_ENV="production"
 
 # Copy built application
-COPY --from=build /package.json /package-lock.json ./
+COPY --from=build /app/package.json /app/package-lock.json ./
 
 RUN npm ci
 

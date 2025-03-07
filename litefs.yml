@@ -6,7 +6,7 @@ fuse:
 data:
   dir: "${DATA_DIR}/litefs"
   compress: true
-  retention: 60m
+  retention: 10000m
 
 lease:
   type: "consul"
