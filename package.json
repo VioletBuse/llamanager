@@ -17,6 +17,8 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@kitajs/html": "^4.2.7",
+    "@kitajs/ts-html-plugin": "^4.1.1",
     "better-sqlite3": "^11.8.1",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.40.0",
