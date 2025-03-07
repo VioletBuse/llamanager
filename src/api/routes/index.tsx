@@ -1,9 +1,12 @@
+import bodyParser from "body-parser"
 import express from "express"
 
 const app = express()
 
+app.use(bodyParser.json())
+
 app.all('*', async (req, res) => {
-    const htmlstr: string = await (
+    const htmlstr = await (
         <html>
             <body>
                 <h1>Llamanager</h1>
