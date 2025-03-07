@@ -2,7 +2,8 @@ import path from "node:path";
 import { db } from "../db/index.js"
 import app from "./routes/index.js"
 import {migrate} from "drizzle-orm/better-sqlite3/migrator"
-import { run_manager_bg } from "./background/index.js";
+import { run_worker_manager } from "./background/worker.js";
+import { run_backup_manager } from "./background/backups.js";
 
 export const run_manager = async () => {
 
@@ -17,5 +18,6 @@ export const run_manager = async () => {
         console.log(`llamanager manager listening on port ${process.env.INTERNAL_PORT!}`)
     })
 
-    run_manager_bg();
+    run_worker_manager();
+    run_backup_manager();
 }

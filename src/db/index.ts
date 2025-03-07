@@ -11,7 +11,7 @@ sqlite.pragma('journal_mode = WAL')
 
 export const db = drizzle(sqlite)
 
-export const get_primary_id = async (): Promise<string | null> => {
+export const get_primary_id = async (): Promise<string> => {
     try {
         const data = await fs.readFile(`/litefs/.primary`, 'utf-8')
         if (data) {
@@ -21,17 +21,17 @@ export const get_primary_id = async (): Promise<string | null> => {
 
             return machine_id
         } else {
-            return null
+            return process.env.FLY_MACHINE_ID!
         }
     } catch (err) {
-        return null
+        return process.env.FLY_MACHINE_ID!
     }
 }
 
 export const get_primary_url = async (): Promise<string> => {
     const primary_id = await get_primary_id();
 
-    if (!primary_id) {
+    if (primary_id === process.env.FLY_MACHINE_ID) {
         return `http://localhost:8080`
     }
 

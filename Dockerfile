@@ -18,7 +18,7 @@ WORKDIR /app
 # RUN tar -C /usr/local/bin -xzf /tmp/litestream.tar.gz
 
 # Install LiteFS
-RUN apt-get update -y && apt-get install -y ca-certificates fuse3 sqlite3
+RUN apt-get update -y && apt-get install -y ca-certificates fuse3 sqlite3 gzip
 COPY --from=flyio/litefs:0.5 /usr/local/bin/litefs /usr/local/bin/litefs
 
 # Throw-away build stage to reduce size of final image
