@@ -44,7 +44,14 @@ FROM base
 ENV NODE_ENV="production"
 
 # Copy built application
-COPY --from=build /app /app
+COPY --from=build /package.json /package-lock.json ./
+
+RUN npm ci
+
+COPY --from=build /app/drizzle /app/drizzle
+COPY --from=build /app/dist /app/dist
+
+COPY --from=build /app/litefs.yml /app/litefs.yml
 
 # RUN chmod +x scripts/*
 
